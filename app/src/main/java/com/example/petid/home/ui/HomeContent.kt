@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Clear
+import androidx.compose.material3.Button
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -26,65 +27,49 @@ import androidx.compose.ui.graphics.drawscope.scale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.IntSize
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.example.petid.R
+import com.example.petid.navigation.Routes.FORM
 
 @Composable
-fun HomeContent() {
-    val context = LocalContext.current
-    val imageBitmap = BitmapFactory.decodeResource(context.resources, R.drawable.img_unicesumar_frente)
+fun HomeContent(
+    navController: NavController? = null
+) {
+
 
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .drawBehind {
-                drawImage(
-                    imageBitmap.asImageBitmap(),
-                    dstSize = IntSize(size.width.toInt(), (size.height * 0.79f).toInt()),
-                    dstOffset = IntOffset(0, 224)
-                )
+            .padding(16.dp)
+
+    ) {
+        Button(
+            modifier = Modifier.fillMaxWidth(),
+            onClick = {
+                navController?.navigate(FORM)
+            },
+            content = {
+                Text(text = "form")
             }
-    ) {
-        Text(
-            modifier = Modifier.rotate(270f),
-            text = "CARTEIRA DE IDENTIFICAÇÃO ESTUDANTIL",
-            fontWeight = FontWeight.Bold
         )
 
-        Text(
-            modifier = Modifier.rotate(270f),
-            text = "Nome",
-            fontWeight = FontWeight.Bold
-        )
-
-        Text(
-            modifier = Modifier.rotate(270f),
-            text = "Fernanda Bordin de Souza"
+        Button(
+            modifier = Modifier.fillMaxWidth(),
+            onClick = {},
+            content = {
+                Text(text = "pet_list")
+            }
         )
     }
 
-    Row(
-      modifier = Modifier
-          .padding(16.dp)
-          .fillMaxWidth(),
-        horizontalArrangement = Arrangement.End
+}
 
-    ) {
-        Icon(
-            modifier = Modifier
-                .size(32.dp)
-                .drawBehind {
-                    drawCircle(
-                        color = Color.Gray,
-                        radius = 60f
-                    )
-                },
-            imageVector = Icons.Filled.Clear,
-            contentDescription = null,
-            tint = Color.White        )
-    }
-
-
+@Preview
+@Composable
+fun HomeContentPreview() {
+    HomeContent()
 }

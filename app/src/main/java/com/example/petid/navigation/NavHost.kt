@@ -5,7 +5,9 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.example.petid.form.ui.FormScreen
 import com.example.petid.home.ui.HomeScreen
+import com.example.petid.navigation.Routes.FORM
 import com.example.petid.navigation.Routes.HOME
 
 @Composable
@@ -16,6 +18,9 @@ fun NavHost(
     NavHost(navController = navController, startDestination = HOME) {
         composable(route = HOME) {
             HomeScreen(navController = navController)
+        }
+        composable(route = FORM) {
+            FormScreen(navController = navController)
         }
     }
 }
