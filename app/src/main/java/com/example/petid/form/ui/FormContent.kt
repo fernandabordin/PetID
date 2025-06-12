@@ -24,13 +24,9 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavController
-import com.example.petid.MainViewModel
-import com.example.petid.navigation.Routes.FORM
-import com.example.petid.navigation.Routes.PROFILE
 
 @Composable
-fun FormContent(navController: NavController? = null, viewModel: MainViewModel) {
+fun FormContent() {
     val focusManager = LocalFocusManager.current
     val interactionSource = remember { MutableInteractionSource() }
 
@@ -48,7 +44,6 @@ fun FormContent(navController: NavController? = null, viewModel: MainViewModel) 
         val name = remember { mutableStateOf("") }
         val age = remember { mutableStateOf("") }
         val color = remember { mutableStateOf("") }
-        val sexo = remember { mutableStateOf("") }
         val cutePink = Color(0xFFF2668B)
         val containerColor = Color(0xFFF2F2F2)
 
@@ -126,28 +121,18 @@ fun FormContent(navController: NavController? = null, viewModel: MainViewModel) 
                     unfocusedLabelColor = cutePink
                 ),
                 shape = RoundedCornerShape(18.dp),
-                value = sexo.value,
+                value = color.value,
                 label = {
-                    Text(text = "Sexo")
+                    Text(text = "Espécie")
                 },
                 onValueChange = { newValue ->
-                    sexo.value = newValue
+                    color.value = newValue
 
                 }
             )
         }
         Button(
-            onClick = {
-                viewModel.updatePet(
-                    MainViewModel.PetData(
-                        name = name.value,
-                        age = age.value.toInt(),
-                        color = color.value,
-                        gender = sexo.value
-                    )
-                )
-                navController?.navigate(PROFILE)
-            },
+            onClick = {},
             modifier = Modifier
                 .fillMaxWidth(),
             colors = ButtonDefaults.buttonColors(containerColor = cutePink),
@@ -161,5 +146,5 @@ fun FormContent(navController: NavController? = null, viewModel: MainViewModel) 
 @Preview
 @Composable
 fun FormContentPreview() {
-//    FormContent()
+    FormContent()
 }

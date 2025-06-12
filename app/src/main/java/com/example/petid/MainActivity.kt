@@ -12,24 +12,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.petid.navigation.NavHost
 import com.example.petid.ui.theme.PetIDTheme
-import org.koin.android.ext.koin.androidContext
-import org.koin.core.context.GlobalContext.startKoin
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setupKoin()
         setContent {
             PetIDTheme {
                 NavHost(context = applicationContext)
             }
-        }
-    }
-
-    private fun setupKoin() {
-        startKoin {
-            androidContext(this@MainActivity)
-            modules(mainModule)
         }
     }
 }

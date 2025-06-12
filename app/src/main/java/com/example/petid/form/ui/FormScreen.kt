@@ -6,17 +6,16 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavController
-import com.example.petid.MainViewModel
 import com.example.petid.home.ui.HomeContent
 
 @Composable
-fun FormScreen(navController: NavController, viewModel: MainViewModel) {
+fun FormScreen(navController: NavController) {
     Scaffold(
         content = {
             Box(
                 modifier = Modifier.padding(it)
             ) {
-                FormContent(viewModel = viewModel, navController = navController)
+                FormContent()
             }
         }
     )
