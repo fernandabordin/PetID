@@ -1,4 +1,4 @@
-package com.example.petid.form.ui
+package com.example.petid.profile.ui
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.padding
@@ -7,16 +7,16 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavController
 import com.example.petid.MainViewModel
-import com.example.petid.home.ui.HomeContent
+import com.example.petid.form.ui.FormContent
 
 @Composable
-fun FormScreen(navController: NavController, viewModel: MainViewModel) {
+fun ProfileScreen(navController: NavController, viewModel: MainViewModel) {
     Scaffold(
         content = {
             Box(
                 modifier = Modifier.padding(it)
             ) {
-                FormContent(viewModel = viewModel, navController = navController)
+                ProfileContent(viewModel = viewModel)
             }
         }
     )
