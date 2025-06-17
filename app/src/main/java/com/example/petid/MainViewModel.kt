@@ -1,5 +1,6 @@
 package com.example.petid
 
+import android.net.Uri
 import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -13,7 +14,8 @@ class MainViewModel : ViewModel() {
             name = pet.name,
             age = pet.age,
             color = pet.color,
-            gender = pet.gender
+            gender = pet.gender,
+            imageUri = pet.imageUri
         )
     }
 
@@ -22,5 +24,6 @@ class MainViewModel : ViewModel() {
         var age: Int = -1,
         var color: String = "",
         var gender: String = "",
+        var imageUri: String? = null
     )
 }

@@ -1,13 +1,18 @@
 package com.example.petid.form.ui
 
+import android.net.Uri
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
@@ -28,6 +33,10 @@ import androidx.navigation.NavController
 import com.example.petid.MainViewModel
 import com.example.petid.navigation.Routes.FORM
 import com.example.petid.navigation.Routes.PROFILE
+import coil.compose.AsyncImage
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.setValue
+
 
 @Composable
 fun FormContent(navController: NavController? = null, viewModel: MainViewModel) {
@@ -51,6 +60,14 @@ fun FormContent(navController: NavController? = null, viewModel: MainViewModel) 
         val sexo = remember { mutableStateOf("") }
         val cutePink = Color(0xFFF2668B)
         val containerColor = Color(0xFFF2F2F2)
+
+        var selectedImageUri by remember { mutableStateOf<Uri?>(null) }
+
+        val galleryLauncher = rememberLauncherForActivityResult(
+            contract = ActivityResultContracts.GetContent()
+        ) { uri: Uri? ->
+            selectedImageUri = uri
+        }
 
         Column(
             modifier = Modifier
@@ -135,7 +152,29 @@ fun FormContent(navController: NavController? = null, viewModel: MainViewModel) 
 
                 }
             )
+            Spacer(modifier = Modifier.height(16.dp))
         }
+        
+        Button(
+            onClick = { galleryLauncher.launch("image/*") },
+            modifier = Modifier.fillMaxWidth(),
+            colors = ButtonDefaults.buttonColors(containerColor = cutePink)
+        ) {
+            Text(text = "Selecionar imagem")
+        }
+        
+        Spacer(modifier = Modifier.height(16.dp))
+
+        selectedImageUri?.let { uri ->
+            AsyncImage(
+                model = uri,
+                contentDescription = "Imagem selecionada",
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(200.dp)
+            )
+        }
+        
         Button(
             onClick = {
                 viewModel.updatePet(
@@ -143,7 +182,8 @@ fun FormContent(navController: NavController? = null, viewModel: MainViewModel) 
                         name = name.value,
                         age = age.value.toInt(),
                         color = color.value,
-                        gender = sexo.value
+                        gender = sexo.value,
+                        imageUri = selectedImageUri?.toString()
                     )
                 )
                 navController?.navigate(PROFILE)
