@@ -36,7 +36,6 @@ fun NavHost(
         composable(route = PROFILE) {
             ProfileScreen(navController = navController, viewModel = viewModel)
         }
-        
         composable(route = PET_LIST) {
             PetListScreen(navController = navController, viewModel = viewModel)
         }

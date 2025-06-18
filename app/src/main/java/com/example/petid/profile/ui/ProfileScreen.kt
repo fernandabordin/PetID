@@ -11,13 +11,12 @@ import com.example.petid.form.ui.FormContent
 
 @Composable
 fun ProfileScreen(navController: NavController, viewModel: MainViewModel) {
-    Scaffold(
-        content = {
-            Box(
-                modifier = Modifier.padding(it)
-            ) {
-                ProfileContent(viewModel = viewModel)
-            }
+    Scaffold { paddingValues ->
+        Box(
+            modifier = Modifier
+                .padding(paddingValues)
+        ) {
+            ProfileContent(viewModel = viewModel, navController = navController)
         }
-    )
+    }
 }
