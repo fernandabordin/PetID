@@ -13,7 +13,9 @@ import com.example.petid.navigation.Routes.FORM
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
 import com.example.petid.navigation.Routes.HOME
+import com.example.petid.navigation.Routes.PET_LIST
 import com.example.petid.navigation.Routes.PROFILE
+import com.example.petid.petlist.ui.PetListScreen
 import com.example.petid.profile.ui.ProfileScreen
 import org.koin.androidx.compose.koinViewModel
 
@@ -33,6 +35,10 @@ fun NavHost(
         }
         composable(route = PROFILE) {
             ProfileScreen(navController = navController, viewModel = viewModel)
+        }
+        
+        composable(route = PET_LIST) {
+            PetListScreen(navController = navController, viewModel = viewModel)
         }
     }
 }

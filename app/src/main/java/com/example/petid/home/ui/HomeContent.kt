@@ -12,6 +12,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.petid.navigation.Routes.FORM
+import com.example.petid.navigation.Routes.PET_LIST
 
 @Composable
 fun HomeContent(
@@ -36,7 +37,9 @@ fun HomeContent(
 
         Button(
             modifier = Modifier.fillMaxWidth(),
-            onClick = {},
+            onClick = {
+                navController?.navigate(PET_LIST)
+            },
             content = {
                 Text(text = "pet_list")
             }
