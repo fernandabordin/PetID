@@ -11,6 +11,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import com.example.petid.components.DefaultButton
 import com.example.petid.navigation.Routes.FORM
 import com.example.petid.navigation.Routes.PET_LIST
 
@@ -25,24 +26,18 @@ fun HomeContent(
             .padding(16.dp)
 
     ) {
-        Button(
-            modifier = Modifier.fillMaxWidth(),
+        DefaultButton(
             onClick = {
                 navController?.navigate(FORM)
             },
-            content = {
-                Text(text = "form")
-            }
+            text = "form"
         )
 
-        Button(
-            modifier = Modifier.fillMaxWidth(),
+        DefaultButton(
             onClick = {
                 navController?.navigate(PET_LIST)
             },
-            content = {
-                Text(text = "pet_list")
-            }
+            text = "pet_list"
         )
     }
 

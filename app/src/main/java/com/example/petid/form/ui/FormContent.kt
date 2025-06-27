@@ -7,7 +7,6 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -21,27 +20,27 @@ import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.ui.Alignment
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import com.example.petid.MainViewModel
-import com.example.petid.navigation.Routes.FORM
-import com.example.petid.navigation.Routes.PROFILE
 import coil.compose.AsyncImage
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.setValue
-
+import com.example.petid.MainViewModel
+import com.example.petid.components.DefaultButton
+import com.example.petid.components.DefaultDropdown
+import com.example.petid.navigation.Routes.PROFILE
 
 @Composable
 fun FormContent(navController: NavController? = null, viewModel: MainViewModel) {
     val focusManager = LocalFocusManager.current
     val interactionSource = remember { MutableInteractionSource() }
+    val selectedSex = remember { mutableStateOf("") }
 
     Column(
         modifier = Modifier
@@ -133,35 +132,22 @@ fun FormContent(navController: NavController? = null, viewModel: MainViewModel) 
                 }
             )
 
-            OutlinedTextField(
-                modifier = Modifier.fillMaxWidth(),
-                colors = OutlinedTextFieldDefaults.colors(
-                    focusedContainerColor = containerColor,
-                    unfocusedBorderColor = cutePink,
-                    focusedBorderColor = cutePink,
-                    focusedLabelColor = cutePink,
-                    unfocusedLabelColor = cutePink
-                ),
-                shape = RoundedCornerShape(18.dp),
-                value = sexo.value,
-                label = {
-                    Text(text = "Sexo")
-                },
-                onValueChange = { newValue ->
-                    sexo.value = newValue
+            val genderOptions = listOf("Macho", "Fêmea")
 
-                }
+            DefaultDropdown(
+                selectedOption = selectedSex.value,
+                onOptionSelected = { selectedSex.value = it },
+                options = genderOptions,
+                label = "Sexo",
             )
+
             Spacer(modifier = Modifier.height(16.dp))
         }
         
-        Button(
+        DefaultButton(
             onClick = { galleryLauncher.launch("image/*") },
-            modifier = Modifier.fillMaxWidth(),
-            colors = ButtonDefaults.buttonColors(containerColor = cutePink)
-        ) {
-            Text(text = "Selecionar imagem")
-        }
+            text = "Selecionar imagem"
+        )
         
         Spacer(modifier = Modifier.height(16.dp))
 
@@ -175,25 +161,20 @@ fun FormContent(navController: NavController? = null, viewModel: MainViewModel) 
             )
         }
         
-        Button(
+        DefaultButton(
             onClick = {
                 viewModel.updatePet(
                     MainViewModel.PetData(
                         name = name.value,
                         age = age.value.toInt(),
                         color = color.value,
-                        gender = sexo.value,
+                        gender = selectedSex.value,
                         imageUri = selectedImageUri?.toString()
                     )
                 )
                 navController?.navigate(PROFILE)
             },
-            modifier = Modifier
-                .fillMaxWidth(),
-            colors = ButtonDefaults.buttonColors(containerColor = cutePink),
-            content = {
-                Text(text = "Confirmar")
-            }
+            text = "Confirmar"
         )
     }
 }

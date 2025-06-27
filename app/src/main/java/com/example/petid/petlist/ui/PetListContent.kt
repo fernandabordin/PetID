@@ -35,7 +35,7 @@ fun PetListContent(viewModel: MainViewModel) {
                 Text(text = "Nome: ${pet.name}")
                 Text(text = "Idade: ${pet.age}")
                 Text(text = "Cor: ${pet.color}")
-                Text(text = "Cor: ${pet.gender}")
+                Text(text = "Sexo: ${pet.gender}")
             }
             
             Spacer(modifier = Modifier.height(16.dp))
