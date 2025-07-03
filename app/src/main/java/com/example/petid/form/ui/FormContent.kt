@@ -34,6 +34,7 @@ import coil.compose.AsyncImage
 import com.example.petid.MainViewModel
 import com.example.petid.components.DefaultButton
 import com.example.petid.components.DefaultDropdown
+import com.example.petid.components.DefaultTextField
 import com.example.petid.navigation.Routes.PROFILE
 
 @Composable
@@ -56,7 +57,6 @@ fun FormContent(navController: NavController? = null, viewModel: MainViewModel) 
         val name = remember { mutableStateOf("") }
         val age = remember { mutableStateOf("") }
         val color = remember { mutableStateOf("") }
-        val sexo = remember { mutableStateOf("") }
         val cutePink = Color(0xFFF2668B)
         val containerColor = Color(0xFFF2F2F2)
 
@@ -72,63 +72,28 @@ fun FormContent(navController: NavController? = null, viewModel: MainViewModel) 
             modifier = Modifier
                 .fillMaxWidth()
         ) {
-            OutlinedTextField(
-                modifier = Modifier.fillMaxWidth(),
-                colors = OutlinedTextFieldDefaults.colors(
-                    focusedContainerColor = containerColor,
-                    unfocusedBorderColor = cutePink,
-                    focusedBorderColor = cutePink,
-                    focusedLabelColor = cutePink,
-                    unfocusedLabelColor = cutePink
-                ),
-                shape = RoundedCornerShape(18.dp),
-                value = name.value,
-                label = {
-                    Text(text = "Nome")
-                },
+
+            DefaultTextField(
+                text = color,
+                label = "Nome",
                 onValueChange = { newValue ->
                     name.value = newValue
-
                 }
             )
 
-            OutlinedTextField(
-                modifier = Modifier.fillMaxWidth(),
-                colors = OutlinedTextFieldDefaults.colors(
-                    focusedContainerColor = containerColor,
-                    unfocusedBorderColor = cutePink,
-                    focusedBorderColor = cutePink,
-                    focusedLabelColor = cutePink,
-                    unfocusedLabelColor = cutePink
-                ),
-                shape = RoundedCornerShape(18.dp),
-                value = age.value,
-                label = {
-                    Text(text = "Idade")
-                },
+            DefaultTextField(
+                text = color,
+                label = "Idade",
                 onValueChange = { newValue ->
                     age.value = newValue
-
                 }
             )
 
-            OutlinedTextField(
-                modifier = Modifier.fillMaxWidth(),
-                colors = OutlinedTextFieldDefaults.colors(
-                    focusedContainerColor = containerColor,
-                    unfocusedBorderColor = cutePink,
-                    focusedBorderColor = cutePink,
-                    focusedLabelColor = cutePink,
-                    unfocusedLabelColor = cutePink
-                ),
-                shape = RoundedCornerShape(18.dp),
-                value = color.value,
-                label = {
-                    Text(text = "Cor")
-                },
+            DefaultTextField(
+                text = color,
+                label = "Cor",
                 onValueChange = { newValue ->
                     color.value = newValue
-
                 }
             )
 
