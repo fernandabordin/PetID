@@ -13,12 +13,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.OutlinedTextField
-import androidx.compose.material3.OutlinedTextFieldDefaults
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -74,7 +69,7 @@ fun FormContent(navController: NavController? = null, viewModel: MainViewModel) 
         ) {
 
             DefaultTextField(
-                text = color,
+                text = name,
                 label = "Nome",
                 onValueChange = { newValue ->
                     name.value = newValue
@@ -82,7 +77,7 @@ fun FormContent(navController: NavController? = null, viewModel: MainViewModel) 
             )
 
             DefaultTextField(
-                text = color,
+                text = age,
                 label = "Idade",
                 onValueChange = { newValue ->
                     age.value = newValue
@@ -128,7 +123,7 @@ fun FormContent(navController: NavController? = null, viewModel: MainViewModel) 
         
         DefaultButton(
             onClick = {
-                viewModel.updatePet(
+                viewModel.addPet(
                     MainViewModel.PetData(
                         name = name.value,
                         age = age.value.toInt(),
