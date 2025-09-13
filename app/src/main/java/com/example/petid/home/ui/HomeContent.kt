@@ -19,7 +19,6 @@ import com.example.petid.navigation.Routes.PET_LIST
 fun HomeContent(
     navController: NavController? = null
 ) {
-
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -27,24 +26,20 @@ fun HomeContent(
 
     ) {
         DefaultButton(
+            modifier = Modifier
+                .fillMaxWidth(),
             onClick = {
                 navController?.navigate(FORM)
             },
             text = "form"
         )
-
         DefaultButton(
+            modifier = Modifier
+                .fillMaxWidth(),
             onClick = {
                 navController?.navigate(PET_LIST)
             },
             text = "pet_list"
         )
     }
-
-}
-
-@Preview
-@Composable
-fun HomeContentPreview() {
-    HomeContent()
 }

@@ -19,6 +19,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import coil.compose.AsyncImage
 import com.example.petid.MainViewModel
+import com.example.petid.components.DefaultButton
 import com.example.petid.navigation.Routes
 
 @Composable
@@ -41,7 +42,6 @@ fun ProfileContent(viewModel: MainViewModel, navController: NavController) {
                     .height(250.dp)
             )
         }
-
         Text(
             text = pet.name,
             color = cutiePink,
@@ -59,14 +59,11 @@ fun ProfileContent(viewModel: MainViewModel, navController: NavController) {
             text = pet.gender,
             color = cutiePink
         )
-        
-        Button(
-            onClick = {
-                navController.navigate(Routes.PET_LIST)
-            },
-            colors = ButtonDefaults.buttonColors(containerColor = cutiePink)
-        ) {
-            Text(text = "Lista de Pets")
-        }
+        DefaultButton(
+            modifier = Modifier
+                .fillMaxWidth(),
+            onClick = { navController.navigate(Routes.PET_LIST) },
+            text = "Lista de Pets"
+        )
     }
 }

@@ -23,7 +23,6 @@ fun DefaultTextField(
     borderColor: Color = Color(0xFFF2668B),
     shape: RoundedCornerShape = RoundedCornerShape(18.dp)
 ) {
-
     OutlinedTextField(
         value = text.value,
         onValueChange = onValueChange,

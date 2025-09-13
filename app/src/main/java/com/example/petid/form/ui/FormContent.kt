@@ -47,27 +47,22 @@ fun FormContent(navController: NavController? = null, viewModel: MainViewModel) 
                 focusManager.clearFocus()
             },
         verticalArrangement = Arrangement.SpaceBetween
-
     ) {
         val name = remember { mutableStateOf("") }
         val age = remember { mutableStateOf("") }
         val color = remember { mutableStateOf("") }
         val cutePink = Color(0xFFF2668B)
         val containerColor = Color(0xFFF2F2F2)
-
         var selectedImageUri by remember { mutableStateOf<Uri?>(null) }
-
         val galleryLauncher = rememberLauncherForActivityResult(
             contract = ActivityResultContracts.GetContent()
         ) { uri: Uri? ->
             selectedImageUri = uri
         }
-
         Column(
             modifier = Modifier
                 .fillMaxWidth()
         ) {
-
             DefaultTextField(
                 text = name,
                 label = "Nome",
@@ -75,7 +70,6 @@ fun FormContent(navController: NavController? = null, viewModel: MainViewModel) 
                     name.value = newValue
                 }
             )
-
             DefaultTextField(
                 text = age,
                 label = "Idade",
@@ -83,7 +77,6 @@ fun FormContent(navController: NavController? = null, viewModel: MainViewModel) 
                     age.value = newValue
                 }
             )
-
             DefaultTextField(
                 text = color,
                 label = "Cor",
@@ -91,25 +84,26 @@ fun FormContent(navController: NavController? = null, viewModel: MainViewModel) 
                     color.value = newValue
                 }
             )
-
             val genderOptions = listOf("Macho", "Fêmea")
-
             DefaultDropdown(
                 selectedOption = selectedSex.value,
                 onOptionSelected = { selectedSex.value = it },
                 options = genderOptions,
                 label = "Sexo",
             )
-
             Spacer(modifier = Modifier.height(16.dp))
         }
-        
         DefaultButton(
+            modifier = Modifier
+                .fillMaxWidth(),
             onClick = { galleryLauncher.launch("image/*") },
             text = "Selecionar imagem"
         )
-        
-        Spacer(modifier = Modifier.height(16.dp))
+
+        Spacer(
+            modifier = Modifier
+                .height(16.dp)
+        )
 
         selectedImageUri?.let { uri ->
             AsyncImage(
@@ -120,8 +114,9 @@ fun FormContent(navController: NavController? = null, viewModel: MainViewModel) 
                     .height(200.dp)
             )
         }
-        
         DefaultButton(
+            modifier = Modifier
+                .fillMaxWidth(),
             onClick = {
                 viewModel.addPet(
                     MainViewModel.PetData(
@@ -137,10 +132,4 @@ fun FormContent(navController: NavController? = null, viewModel: MainViewModel) 
             text = "Confirmar"
         )
     }
-}
-
-@Preview
-@Composable
-fun FormContentPreview() {
-//    FormContent()
 }

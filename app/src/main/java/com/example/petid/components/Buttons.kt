@@ -16,8 +16,7 @@ fun DefaultButton(
     color: Color = Color(0xFFF2668B)
 ) {
     Button(
-        modifier = modifier
-            .fillMaxWidth(),
+        modifier = modifier,
         onClick = onClick,
         content = {
             Text(text = text)
