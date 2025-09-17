@@ -82,7 +82,8 @@ fun DefaultAlertDialog(
                         .fillMaxWidth()
                 ) {
                     DefaultButton(
-                        onClick = { onConfirm() },
+                        onClick = { openDialog.value = false
+                            onConfirm() },
                         text = "Confirmar"
                     )
                     Spacer(

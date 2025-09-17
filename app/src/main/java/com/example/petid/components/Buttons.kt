@@ -13,11 +13,13 @@ fun DefaultButton(
     modifier: Modifier = Modifier,
     onClick: () -> Unit,
     text: String,
-    color: Color = Color(0xFFF2668B)
+    color: Color = Color(0xFFF2668B),
+    enabled: Boolean = true
 ) {
     Button(
         modifier = modifier,
         onClick = onClick,
+        enabled = enabled,
         content = {
             Text(text = text)
         },

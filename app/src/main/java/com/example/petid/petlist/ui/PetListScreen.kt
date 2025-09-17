@@ -14,7 +14,7 @@ fun PetListScreen(navController: NavController, viewModel: MainViewModel) {
         content = { paddingValues ->
             Box(modifier = Modifier
                 .padding(paddingValues))
-            PetListContent(viewModel = viewModel)
+            PetListContent(viewModel = viewModel, navController = navController)
         }
     )
 }

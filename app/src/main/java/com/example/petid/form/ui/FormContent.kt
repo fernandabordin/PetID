@@ -84,7 +84,7 @@ fun FormContent(navController: NavController? = null, viewModel: MainViewModel) 
                     color.value = newValue
                 }
             )
-            val genderOptions = listOf("Macho", "Fêmea")
+            val genderOptions = listOf("Fêmea", "Macho")
             DefaultDropdown(
                 selectedOption = selectedSex.value,
                 onOptionSelected = { selectedSex.value = it },
@@ -117,6 +117,11 @@ fun FormContent(navController: NavController? = null, viewModel: MainViewModel) 
         DefaultButton(
             modifier = Modifier
                 .fillMaxWidth(),
+            enabled = if (name.value.isNotEmpty() && age.value.isNotEmpty() && color.value.isNotEmpty() && selectedSex.value.isNotEmpty() && selectedImageUri != null) {
+                true
+            } else {
+                false
+            },
             onClick = {
                 viewModel.addPet(
                     MainViewModel.PetData(

@@ -32,10 +32,14 @@ class MainViewModel : ViewModel() {
 
     fun changeValueDeleteButton(pet: PetData) {
         if (_petList.isNotEmpty() && _petList.contains(pet)) {
-            _petList.forEach { petItem ->
-                petItem.showDeleteButton.value = false
-            }
+            hideDeleteButton()
             pet.showDeleteButton.value = true
+        }
+    }
+
+    fun hideDeleteButton() {
+        _petList.forEach { petItem ->
+            petItem.showDeleteButton.value = false
         }
     }
 

@@ -1,5 +1,6 @@
 package com.example.petid.profile.ui
 
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -26,6 +27,10 @@ import com.example.petid.navigation.Routes
 fun ProfileContent(viewModel: MainViewModel, navController: NavController) {
     val pet by viewModel.pet.collectAsState()
     val cutiePink = Color(0xFFF2668B)
+
+    BackHandler {
+        navController.popBackStack(Routes.HOME, false)
+    }
 
     Column (
         modifier = Modifier
